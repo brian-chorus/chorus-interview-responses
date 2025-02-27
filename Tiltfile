@@ -1,6 +1,7 @@
 k8s_yaml([
-    './k8s/postgres.yaml'
-])
+    './k8s/postgres.yaml',
+    './k8s/flask-app.yaml'  # Add this line for the Flask app
+], allow_duplicates=True)   # Allow duplicates
 
 k8s_resource(
     'db',
@@ -21,4 +22,13 @@ local_resource(
     "python main.py",
     trigger_mode=TRIGGER_MODE_MANUAL,
     resource_deps=['init_db']
+)
+
+# Add Flask service
+docker_build('flask-app', 'flask', dockerfile='flask/Dockerfile')
+
+k8s_resource(
+    'flask-app',
+    port_forwards=['5000:5000'],
+    links=['http://localhost:5000/']
 )

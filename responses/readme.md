@@ -1,10 +1,14 @@
 # Response to Take Home
 
 ## Data Model
-**Location:** `responses/data_model`
+**Location:** [responses/data_model](./data_model)
+
+### Demonstration App
+Flask app with curl requests that demonstrate how the data model works. The app is located in the [flask/](./flask/) directory, and you can use curl commands to interact with the various endpoints.
+
 
 ## SQL Answers
-**Location:** `responses/query_answers`
+**Location:** [responses/query_answers](./query_answers)
 
 ## Architectural Diagram
 **Snowflake Data Pipeline:** [Link](https://www.figma.com/board/uUzejkgcOgrS9M4GaR05oN/Steward-Architecture?node-id=0-1&p=f&t=icSmaTJQyVZMxTMG-0)
