@@ -3,8 +3,8 @@
 ## Data Model
 **Location:** [responses/data_model](./data_model)
 
-### Demonstration App
-Flask app with curl requests that demonstrate how the data model works. The app is located in the [flask/](./flask/) directory, and you can use curl commands to interact with the various endpoints.
+### Data Model Demonstration App
+Simple flask app with curl requests that demonstrate how the data model works. The app is located in the [flask/](../flask/) directory, and you can use curl commands to interact with the various endpoints.
 
 
 ## SQL Answers
