@@ -1,3 +1,4 @@
+# flask-app.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,11 +13,18 @@ spec:
       labels:
         app: flask-app
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command: ['sh', '-c', 'until nc -z -v -w30 db-service 5432; do echo "Waiting for postgres..."; sleep 5; done;']
       containers:
-      - name: flask-app
-        image: flask-app
-        ports:
-        - containerPort: 5000
+        - name: flask-app
+          image: flask-app
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://user:password@db-service:5432/postgres"
 ---
 apiVersion: v1
 kind: Service
@@ -24,7 +32,7 @@ metadata:
   name: flask-app
 spec:
   ports:
-  - port: 5000
-    targetPort: 5000
+    - port: 5000
+      targetPort: 5000
   selector:
     app: flask-app
